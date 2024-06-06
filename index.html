@@ -1,0 +1,114 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Shopping App</title>  
+    <link rel="stylesheet" href="styles.css">
+</head>  
+<body>  
+    <div class="header">
+        <img src="1.jpg" alt="logo" class="left-image">  
+        <h1>IT School Online - Training Resources & Courses for RTOs</h1>   
+      </div>    
+        <div class="topnav">  
+            <a href="index.html" onclick="showPage('createUserPage')">Create User</a>  
+            <a href="Login.html" onclick="showPage('loginPage')">Login</a>  
+            <a href="About Us.html">About Us</a>
+            <a href="#">Contact</a>  
+          </div> 
+    </header>  
+    <div id="createUserPage" class="page">  
+        <!-- Create User Page -->  
+        <h2>Create New User</h2> 
+        <div class="page-content"> <!-- Add a container to wrap the content --> 
+        <input type="text" id="username" placeholder="Enter your English username">  
+        <input type="password" id="password" placeholder="Enter your numeric password">  
+        <button onclick="createUser()">Create User</button> 
+        <!-- Perhaps additional content or intervals may need to be added here -->  
+        </div>  
+        <footer>  
+            <div class="footer-content" style="margin-top: 20px;"> <!-- Add margin top here -->  
+                <p>&copy; 2024 Vincent Shopping App. All rights reserved.</p>  
+                <p>For assistance, please contact us at: <a href="mailto:2318251322@qq.com">2318251322@qq.com</a></p>  
+            </div>  
+        </footer>  
+    </div>
+
+    <div id="loginPage" class="page">  
+        <!-- Login page -->  
+        <h2>Login</h2>  
+        <input type="text" id="loginUsername" placeholder="Enter your English username">  
+        <input type="password" id="loginPassword" placeholder="Enter your numeric password">  
+        <button onclick="login()">Login</button>  
+        <footer>  
+            <div class="footer-content">  
+            <p>&copy; 2024 Vincent Shopping App. All rights reserved.</p>  
+            <p>For assistance, please contact us at: <a href="2318251322@qq.com">2318251322@qq.com</a></p>    
+          </footer> 
+    </div>  
+
+    <div id="shoppingPage" class="page hidden">  
+        <!-- Shopping page -->  
+<div class="shopping-page">  
+  <!-- Hero banner image -->  
+  <div class="hero-banner">  
+      <img src="A.jpg" alt="Shopping Page Hero Banner">  
+  </div>  
+
+  <h1 class="centered-heading">shopping cart</h1>
+    <div class="container">  
+        <div class="product-list">  
+            <!-- Example product, remove from price`$` --> 
+            <div class="product" data-price="100">  
+                <h2>Course1</h2>  
+                <p class="price">price: $100<span></span></p>  
+                <input class="quantity" type="number" value="0">  
+                <button class="remove" data-product-index="0">delete</button> <!-- Added data product index attribute -->  
+            </div>  
+            <!-- Repeat the above div to add other products, just change the data price and text -->  
+            <div class="product" data-price="200">  
+                <h2>Course2</h2>  
+                <p class="price">price: $200<span></span></p>  
+                <input class="quantity" type="number" value="0">  
+                <button class="remove" data-product-index="1">delete</button> <!-- Added data product index attribute -->  
+            </div>   
+            <div class="product" data-price="300">  
+                <h2>Course3</h2>  
+                <p class="price">price: $300<span></span></p>  
+                <input class="quantity" type="number" value="0">  
+                <button class="remove" data-product-index="2">delete</button> <!-- Added data product index attribute -->  
+            </div>   
+            <div class="product" data-price="400">  
+                <h2>Course4</h2>  
+                <p class="price">price: $400<span></span></p> 
+                <input class="quantity" type="number" value="0">  
+                <button class="remove" data-product-index="3">delete</button> <!-- Added data product index attribute -->  
+            </div>  
+            <!-- ... Other products ... -->  
+            <div class="product" data-price="500">  
+                <h2>Course5</h2>  
+                <p class="price">price: $500<span></span></p>  
+                <input class="quantity" type="number" value="0">  
+                <button class="remove" data-product-index="4">delete</button> <!-- Added data product index attribute -->  
+            </div>    
+        </div>  
+    </div>
+        <div class="cart-summary">  
+            <h2>Shopping Cart Summary</h2>  
+            <div id="product-totals"></div>  
+            <p>The total price of the five products is: $<span id="total-price">0</span></p>  
+            <button id="purchase-button">Checkout</button>  
+            <button id="clear-cart-button">Clear Cart</button>
+  
+        </div>  
+    </div>  
+    <script src="script.js"></script>  
+
+    <footer>  
+      <div class="footer-content">  
+      <p>&copy; 2024 Vincent Shopping App. All rights reserved.</p>  
+      <p>For assistance, please contact us at: <a href="2318251322@qq.com">2318251322@qq.com</a></p>    
+    </footer>  
+</body>  
+</html>
