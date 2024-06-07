@@ -1,129 +1,62 @@
 //I am Vincent
-// 假设我们有一个名为setCookie和getCookie的函数来处理Cookie  
-function setCookie(name, value, days) {  
-    var expires = "";  
-    if (days) {  
-        var date = new Date();  
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));  
-        expires = "; expires=" + date.toUTCString();  
-    }  
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";  
-}  
-  
-function getCookie(name) {  
-    var nameEQ = name + "=";  
-    var ca = document.cookie.split(';');  
-    for (var i = 0; i < ca.length; i++) {  
-        var c = ca[i];  
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);  
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);  
-    }  
-    return null;  
-}  
-// Define an empty array to store user information  
-var users = [];  
-  
-// Page initialization function, assuming there are corresponding page elements  
-function init() {  
-    // Hide all pages  
-    var pages = document.querySelectorAll('.page');  
-    for (var i = 0; i < pages.length; i++) {  
-        pages[i].style.display = 'none';  
-    }  
-      
-    // Display Create User Page 
-    showPage('createUserPage');  
-}  
-  
-/**  
- * Display the page with the specified ID and hide all other pages  
- *  
- * @param {string} pageId - The ID of the page to be displayed  
- */  
-function showPage(pageId) {  
-    // Hide all pages  
-    var pages = document.querySelectorAll('.page');  
-    for (var i = 0; i < pages.length; i++) {  
-        pages[i].style.display = 'none';  
-    }  
-    // Display the page with the specified ID  
-    document.getElementById(pageId).style.display = 'block';  
-}  
-  
-/**  
- * Create a new user and add it to the user array, then jump to the login page  
- */  
 function createUser() {  
-    // Get the values of the username and password input boxes  
-    var username = document.getElementById("username").value;  
-    var password = document.getElementById("password").value;  
-    // Add new user information to the user array  
-    users.push({ username: username, password: password });  
-    setCookie('username', username, 7); // 7 days  
-    setCookie('password', password, 7); // 7 days (not recommended for real use)
-    // Display a prompt for successfully creating a user  
-    alert('User ' + username + ' created!');  
-    // Jump to login page  
-    showPage('loginPage');  
-}  
-// 登录函数  
-function checkLogin() {  
-    // 获取输入框中的用户名和密码  
-    var username = document.getElementById("loginUsername").value;  
-    var password = document.getElementById("loginPassword").value;  
+    var username = document.getElementById('username').value;  
+    var password = document.getElementById('password').value;  
   
-    // 从cookie中获取存储的用户名和密码（这里假设有相应的getCookie函数）  
-    var storedUsername = getCookie('username');  
-    var storedPassword = getCookie('password');  
-  
-    // 比较输入的用户名和密码与cookie中的是否匹配  
-    if (username === storedUsername && password === storedPassword) {  
-        // 如果匹配，跳转到购物车页面  
-        showPage('shoppingPage');  
-    } else {  
-        // 如果不匹配，显示错误消息  
-        alert('用户名或密码错误，请尝试重新输入或跳转到注册页面进行创建。');  
-        // 这里可以添加跳转到注册页面的代码，例如：showPage('registerPage');  
+    // Simple client verification  
+    if (username === '' || password === '') {  
+        alert('Please fill in both username and password.');  
+        return;  
     }  
-}  
-/**  
- * Verify login information. If correct, redirect to the shopping page. Otherwise, return to the user creation page  
- */  
+  
+    // Assuming successful verification, store username and password  
+    localStorage.setItem('username', username);  
+    localStorage.setItem('password', password);  
+    // Set expiration time (only storing timestamps here, additional logic is needed to check for expiration)  
+    localStorage.setItem('expiration', new Date().getTime() + 2 * 24 * 60 * 60 * 1000); // Expires in 2 days  
+  
+    // Prompt the user for successful registration and redirect to the login page (if necessary)  
+    alert('Registration successful!');  
+    window.location.href = 'login.html'; // Assuming you have a login.HTML as the login page  
+}
 function login() {  
-    var loginUsername = document.getElementById("loginUsername").value;  
-    var loginPassword = document.getElementById("loginPassword").value; // 假设密码框的ID是loginPassword  
-      
-    // Try to autofill from cookie  
-    var cookieUsername = getCookie('username');  
-    var cookiePassword = getCookie('password');  
-    if (cookieUsername && cookiePassword) {  
-        document.getElementById("loginUsername").value = cookieUsername;  
-        document.getElementById("loginPassword").value = cookiePassword;  
+    var loginUsername = document.getElementById('loginUsername').value;  
+    var loginPassword = document.getElementById('loginPassword').value;  
+  
+    // Attempt to obtain username and password from localStorage 
+    var storedUsername = localStorage.getItem('username');  
+    var storedPassword = localStorage.getItem('password');  
+    var expiration = localStorage.getItem('expiration');  
+  
+    // Check if the username and password have been set and have not expired 
+    if (expiration && new Date().getTime() < parseInt(expiration)) {  
+        // If the user has not entered a username and password, and the username and password are remembered and have not expired, attempt automatic login  
+        if (loginUsername === '' && loginPassword === '') {  
+            if (storedUsername && storedPassword) {  
+                // This is just a simulation of the client, and there will be server verification in real applications  
+                alert('Auto login successful!');  
+                // Jump to shopping page  
+                window.location.href = 'shopping.html';  
+                return;  
+            }  
+        }  
     }  
-      
-    // TODO: Add your actual login verification code here  
-    // For demonstration purposes, let's assume any entered username/password is valid  
-    if (loginUsername && loginPassword) { // 假设这里进行了验证  
-        // Set cookie again to extend expiration  
-        setCookie('username', loginUsername, 7);  
-        setCookie('password', loginPassword, 7);  
-          
-        // Redirect to shopping page  
-        showPage('shoppingPage');  
+  
+    // The username or password is empty, expired, or manually entered by the user  
+    if (loginUsername !== '' && loginPassword !== '') {  
+        // The username and password have been entered, perform login verification  
+        if (loginUsername === storedUsername && loginPassword === storedPassword) {  
+            alert('Login successful!');  
+            // Jump to shopping page  
+            window.location.href = 'shopping.html';  
+        } else {  
+            alert('Incorrect username or password!');  
+        }  
     } else {  
-        // If no matching user is found, return to the Create User page  
-        showPage('createUserPage');  
-        // Display error messages (if needed)  
-        alert("Invalid username or password. Please try again.");  
+        alert('Please fill in both username and password.');  
     }  
-}  
-  
-// Assuming that the init function is executed after the page loading is completed  
-window.onload = init;  
-  
-/**  
- * Calculate the total price of items in the shopping cart and display it on the page  
- */  
+}
+
 var cart = {}; // Shopping Cart Object  
   
   // script.js  
@@ -219,3 +152,27 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     // Clear form fields (optional)  
     this.reset();  
   });
+  
+  function validateForm() {  
+    // Assuming all fields have been filled in, this is just an example. In practice, you should add validation logic  
+    // For example, check if the input box is empty, if the email format is correct, etc 
+    
+    // Display Modal Box  
+    document.getElementById("myModal").style.display = "block";  
+    
+    // Prevent the default submission behavior of forms, as we only display modal boxes and do not actually submit data
+    return false;  
+  }  
+    
+  // Get the close button for the modal box and add a click event to hide the modal box  
+  var span = document.getElementsByClassName("close")[0];  
+  span.onclick = function() {  
+    document.getElementById("myModal").style.display = "none";  
+  }  
+    
+  // When the user clicks on an area outside the modal box, the modal box is also closed  
+  window.onclick = function(event) {  
+    if (event.target == document.getElementById("myModal")) {  
+      document.getElementById("myModal").style.display = "none";  
+    }  
+  }
