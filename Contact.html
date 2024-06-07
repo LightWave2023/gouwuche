@@ -33,18 +33,35 @@
                 <p>Email address:<a href="mailto:info@worlducation.com">itschool@rtotraining.com.au</a></p>  
               
                 <!-- Add online forms here -->  
-                <form id="contactForm">  
+                <form id="contactForm" onsubmit="return validateForm()">  
                   <label for="name">Name:</label>  
                   <input type="text" id="name" name="name" required>  
-              
+                  
                   <label for="email">Email:</label>  
                   <input type="email" id="email" name="email" required>  
-              
+                  
+                  <label for="date">Date:</label>  
+                  <input type="date" id="date" name="date" required>  
+                  
                   <label for="message">Message:</label>  
                   <textarea id="message" name="message" required></textarea>  
-              
+                  
+                  <label for="requirement1">Requirement 1:</label>  
+                  <input type="text" id="requirement1" name="requirement1" placeholder="Fill in requirement 1" required>  
+                  
+                  <label for="requirement2">Requirement 2:</label>  
+                  <input type="text" id="requirement2" name="requirement2" placeholder="Fill in requirement 2" required>  
+                  
                   <button type="submit">Submit</button>  
                 </form>  
+                  
+                <!-- The Modal -->  
+                <div id="myModal" class="modal">  
+                  <div class="modal-content">  
+                    <span class="close">&times;</span>  
+                    <p>Successfully submitted, we will reply as soon as possible.</p>  
+                  </div>  
+                </div>  
               
                 <!-- Display successful submission message (if needed) -->  
                 <div id="successMessage" style="display: none;">Submission successful!</div>  
