@@ -39,10 +39,6 @@ body {
 }  
 
 /* Page styles */  
-.page {  
-  display: none;  
-  padding: 20px;  
-}  
 
 /* Additional class for hiding elements */  
 .hidden {  
@@ -223,6 +219,144 @@ form textarea {
 #successMessage {  
   color: green;  
   margin-top: 10px;  
+}  
+#createUserPage {  
+  text-align: center; /* Center page content */  
+  padding: 20px; /* Add some inner margins */  
+}  
+
+#userForm {  
+  display: inline-block; /* Make the form horizontally centered */  
+  text-align: left; /* Reset the text alignment within the form to left alignment */  
+  border: 1px solid #ccc; /* Add outer frame */  
+  background-color: lightsalmon; /* Add background color */  
+  padding: 20px; /* Add inner margin */  
+  border-radius: 5px; /* Add rounded corners */  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effects */  
+}  
+
+.form-group {  
+  margin-bottom: 15px; /* Add spacing between form items */  
+}  
+
+.form-group label {  
+  display: block; /* Make the label occupy an entire row */  
+  margin-bottom: 5px; /* Add spacing between labels and input boxes */  
+}  
+
+.form-group input[type="text"],  
+.form-group input[type="password"] {  
+  width: 100%; /* Make the input box occupy the full width of its parent element */  
+  padding: 5px; /* Add inner margin */  
+  border-radius: 3px; /* Add rounded corners */  
+  border: 1px solid red; /* Add border */  
+}  
+
+#createUserPage button {  
+  display: block; /* Make the button occupy an entire row */  
+  margin-top: 10px; /* Add spacing between button and input box */  
+  padding: 10px 20px; /* Add the inner margin of the button */  
+  border-radius: 5px; /* Add rounded corners */  
+  background-color: lightskyblue; /* Add background color */  
+  color: white; /* Add text color */  
+  border: none; /* Remove Borders */  
+  cursor: pointer; /* Add the effect of mouse hover */  
+}  
+
+#createUserPage button:hover {  
+  background-color: #45a049; /* Add background color changes when hovering over the mouse */  
+}
+.login-container {  
+  text-align: center; /* Center page content */  
+  max-width: 300px; /* Limit the maximum width of the container, optional */  
+  margin: 0 auto; /* Center the container horizontally */  
+  padding: 20px; /* Add some inner margins */  
+  border: 1px solid #ccc; /* Add outer frame */  
+  border-radius: 5px; /* Add rounded corners */  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effects */  
+}  
+
+.login-container h2 {  
+  margin-bottom: 20px; /* The spacing between the title and form items */  
+}  
+
+.form-group {  
+  margin-bottom: 15px; /* Add spacing between form items */  
+}  
+
+.form-group label {  
+  display: block; /* Make the label occupy an entire row */  
+  margin-bottom: 5px; /* Add spacing between labels and input boxes */  
+}  
+
+.form-group input[type="text"],  
+.form-group input[type="password"] {  
+  width: 100%; /* Make the input box occupy the full width of its parent element */  
+  padding: 5px; /* Add inner margin */  
+  border-radius: 3px; /* Add rounded corners */  
+  border: 1px solid #ccc; /* Add border */  
+}  
+
+.login-container button {  
+  display: block; /* Make the button occupy an entire row */  
+  margin-top: 10px; /* Add spacing between button and input box */  
+  padding: 10px 20px; /* Add the inner margin of the button */  
+  border-radius: 5px; /* Add rounded corners */  
+  background-color: #4CAF50; /* Add background color */  
+  color: white; /* Add text color */  
+  border: none; /* Remove Borders */  
+  cursor: pointer; /* Add the effect of mouse hover */  
+}  
+
+.login-container button:hover {  
+  background-color: #45a049; /* Add background color changes when hovering over the mouse */  
+}
+
+/* Modal Content */  
+.modal-content {  
+  background-color: #fefefe;  
+  margin: 15% auto; /* 15% from the top and centered */  
+  padding: 20px;  
+  border: 1px solid #888;  
+  width: 80%; /* Could be more or less, depending on screen size */  
+}  
+  
+/* The Close Button */  
+.close {  
+  color: #aaaaaa;  
+  float: right;  
+  font-size: 28px;  
+  font-weight: bold;  
+}  
+  
+.close:hover,  
+.close:focus {  
+  color: #000;  
+  text-decoration: none;  
+  cursor: pointer;  
+}  
+  
+/* Add Animation */  
+.modal {  
+  display: none; /* Hidden by default */  
+  position: fixed; /* Stay in place */  
+  z-index: 1; /* Sit on top */  
+  left: 0;  
+  top: 0;  
+  width: 100%; /* Full width */  
+  height: 100%; /* Full height */  
+  overflow: auto; /* Enable scroll if needed */  
+  background-color: rgb(0,0,0); /* Fallback color */  
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */  
+}  
+  
+/* Modal Content/Box */  
+.modal-content {  
+  background-color: #fefefe;  
+  margin: 15% auto; /* 15% from the top and centered */  
+  padding: 20px;  
+  border: 1px solid #888;  
+  width: 80%; /* Could be more or less, depending on screen size */  
 }  
 /* Footer styles */  
 footer {  
